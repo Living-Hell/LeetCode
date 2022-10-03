@@ -32,3 +32,36 @@ public:
         
     }
 };
+
+//M2
+//Recursion & Backtracking 
+//Faster than 47.48%% (48ms)
+
+class Solution {
+public:
+    void combination(int curr, vector<int> &combo, vector<vector<int>> &res, int currIndex, int k, int n){
+        
+        if(combo.size() == k){
+            res.push_back(combo);
+            return;
+        }
+        
+        for(int i=curr; i<=n; i++){
+            combo.push_back(i);
+            combination(i+1,combo, res, i+1,k, n);
+            combo.pop_back();
+        }
+        
+    }    
+    
+    vector<vector<int>> combine(int n, int k) {
+        
+        vector<int> combo;
+        vector<vector<int>> res;
+        
+        combination(1, combo, res, 0, k, n);
+        
+        return res;
+        
+    }
+};
