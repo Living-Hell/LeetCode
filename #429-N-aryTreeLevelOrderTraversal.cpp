@@ -36,3 +36,38 @@ public:
        
     }
 };
+
+//M2
+//Recursion
+// Faster Than 71.26% (32ms)
+
+class Solution {
+public:
+    vector<vector<int>> ans;
+    
+    void solve(Node* root, int depth){
+        
+        if(!root) return;
+        
+        if(ans.size() == depth){
+            ans.push_back({});
+        }
+        
+        ans[depth].push_back(root->val);
+        
+        for(int i=0; i<root->children.size(); i++)
+            solve(root->children[i], depth+1);
+        
+    }    
+    
+    vector<vector<int>> levelOrder(Node* root) {
+       
+        if(!root) return {};
+       
+        solve(root, 0);
+       
+        return ans;
+       
+       
+    }
+};
