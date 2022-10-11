@@ -1,6 +1,6 @@
 //M1
 //BFS using Queue
-//Faster than 32.5% (1384ms)
+//Faster than 70.59% (961ms)
 
 class Solution {
 public:
@@ -31,15 +31,15 @@ public:
             int top = q.front();
             q.pop();
             
+            if(top == destination)
+                    return true;            
             
             for(auto &node : adjlist[top]){
                 if(!visited[node]){
                     visited[node] = 1;
                     q.push(node);
                 }
-                
-                if(node == destination)
-                    return true;
+        
             }
         }
         
