@@ -41,3 +41,35 @@ public:
         
     }
 };
+
+//M2
+//DFS using Recursion
+//Faster than 69.34% (4ms) (Memory usage better than 99.94%)
+
+class Solution {
+public:
+    vector<int> res;
+    
+    void helper(TreeNode* root, int lvl){
+        
+        if(!root) return;
+        
+        if(res.size() == lvl){
+            res.push_back(root->val);
+        }
+        
+        helper(root->right, lvl+1);
+        helper(root->left, lvl+1);
+        
+    }
+    
+    vector<int> rightSideView(TreeNode* root) {
+        
+        if(!root) return{};
+        
+        helper(root, 0);
+        
+        return res;
+        
+    }
+};
