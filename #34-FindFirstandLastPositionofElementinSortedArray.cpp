@@ -1,7 +1,70 @@
 //M1
+//Binary Search
+//Faster than 58.67% (15ms)
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+
+        int n = nums.size();
+
+        int start = 0, end = n-1;
+        int lind = -1, rind = -1;
+
+        //For left index
+        while(start<=end){
+
+            //Set the value of mid according to start and end index
+            int mid = start + (end - start)/2;
+
+            //If target element found, update the left index and 
+            //Update the end pointer to search for the target element in the left subarray (if any)
+            if(nums[mid] == target){
+                lind = mid;
+                end = mid-1;
+            }
+
+            else if(target > nums[mid])
+                start = mid + 1;
+
+            else
+                end = mid-1;              
+
+        }
+
+        start = 0; end = n-1;
+
+        //For right index
+        while(start<=end){
+
+            //Set the value of mid according to start and end index
+            int mid = start + (end - start)/2;
+
+            //If target element found, update the right index and 
+            //Update the start pointer to search for the target element in the right subarray (if any)
+            if(nums[mid] == target){
+                rind = mid;
+                start = mid+1;
+            }
+
+            //if target is greater than mid element, shift the start pointer to next of mid and search in the right subarray
+            else if(target > nums[mid])
+                start = mid + 1;
+
+            //if target is less than mid element, shift the end pointer to previous of mid and search in the left subarray
+            else
+                end = mid-1;              
+
+        }
+
+        //return left index and right index of the target with default value -1 if target value not in the array
+        return {lind,rind};
+
+    }
+};
+
+//M2
 //Counting the frequency and last index
 //Faster than 65.92% (13ms)
-
 class Solution {
 public:
     vector<int> searchRange(vector<int>& nums, int target) {
