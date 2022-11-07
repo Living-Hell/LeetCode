@@ -12,3 +12,11 @@ left join
     where order_date >= '2019-01-01' and order_date <= '2019-12-31' 
     group by buyer_id) s
 on s.buyer_id = Users.user_id; 
+
+/*M2*/
+select Users.user_id as buyer_id, Users.join_date, count(Orders.buyer_id) as orders_in_2019
+from Users 
+left join Orders
+on Orders.buyer_id = Users.user_id
+and year(Orders.order_date) = '2019'
+group by Users.user_id;
