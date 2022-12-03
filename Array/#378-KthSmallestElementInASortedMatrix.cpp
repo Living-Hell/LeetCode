@@ -1,6 +1,6 @@
 //M1
 //Using Min Heap
-//Faster than 74.33% (53ms)
+//Faster than 74.33% (53ms) Memory O(n^2)
 
 class Solution {
 public:
@@ -20,7 +20,7 @@ public:
 
 //M2
 //Using Binary Search 
-//Faster than 57.13% (75ms)
+//Faster than 57.13% (75ms) Memory O(1)
 
 class Solution {
 public:
