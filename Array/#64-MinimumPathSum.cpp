@@ -1,6 +1,6 @@
 //M1
 //Using DP
-//Faster than 43.77% (22ms)
+//Faster than 90.27% (10ms)
 
 class Solution {
 public:
