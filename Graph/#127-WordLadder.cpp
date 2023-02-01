@@ -1,6 +1,6 @@
 //M1
 //Using BFS
-//Faster than 68.56% (118ms)
+//Faster than 72.95% (103ms)
 
 class Solution {
 public:
@@ -25,8 +25,7 @@ public:
                 for(int j=97; j<=122; j++){
                     if(j==s[i]) continue;
 
-                    char c = j;
-                    swap(s[i],c);
+                    s[i] = j;
 
                     if(st.find(s)!=st.end()){
                         q.push(make_pair(s,top.second+1));
