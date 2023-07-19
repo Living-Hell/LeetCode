@@ -1,13 +1,32 @@
 // M1
 // Using Recursion and Backtracking
-// Faster than 55.58% (185ms)
+// Faster than 85% (55ms)
 
 class Solution
 {
 public:
     set<pair<int, string>> ipr;
-    void invalidParenthesesRemover(string s, unordered_set<string> &ans, int ind, int count)
+    int getMin(string s)
     {
+        stack<char> st;
+        for (int i = 0; i < s.size(); i++)
+        {
+            if (s[i] == '(')
+                st.push(s[i]);
+            else if (s[i] == ')')
+            {
+                if (st.size() > 0 and st.top() == '(')
+                    st.pop();
+                else
+                    st.push(s[i]);
+            }
+        }
+        return st.size();
+    }
+    void invalidParenthesesRemover(string s, unordered_set<string> &ans, int ind, int count, int mra)
+    {
+        if (mra < 0)
+            return;
         pair<int, string> x = make_pair(ind, s);
         if (ipr.find(x) != ipr.end())
             return;
@@ -21,7 +40,7 @@ public:
         {
             string temp = s;
             temp.erase(ind, 1);
-            invalidParenthesesRemover(temp, ans, ind, count);
+            invalidParenthesesRemover(temp, ans, ind, count, mra - 1);
         }
         if (s[ind] == '(')
             count++;
@@ -30,12 +49,13 @@ public:
         if (count < 0)
             return;
         ipr.insert(x);
-        invalidParenthesesRemover(s, ans, ind + 1, count);
+        invalidParenthesesRemover(s, ans, ind + 1, count, mra);
     }
     vector<string> removeInvalidParentheses(string s)
     {
         unordered_set<string> ans;
-        invalidParenthesesRemover(s, ans, 0, 0);
+        int mra = getMin(s);
+        invalidParenthesesRemover(s, ans, 0, 0, mra);
         int mx = 0;
         for (string i : ans)
         {
