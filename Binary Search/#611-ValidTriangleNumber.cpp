@@ -36,3 +36,32 @@ public:
         return ans;
     }
 };
+
+// M2
+// Using 2 pointer (similar to 3 sum)
+// Faster than 92.98% (79 ms)
+
+class Solution
+{
+public:
+    int triangleNumber(vector<int> &nums)
+    {
+        int n = nums.size();
+        sort(nums.begin(), nums.end());
+        int ans = 0;
+        for (int i = n - 1; i >= 0; i--)
+        {
+            for (int j = 0, k = i - 1; j < k;)
+            {
+                if (nums[j] + nums[k] > nums[i])
+                {
+                    ans += k - j;
+                    k--;
+                }
+                else
+                    j++;
+            }
+        }
+        return ans;
+    }
+};
