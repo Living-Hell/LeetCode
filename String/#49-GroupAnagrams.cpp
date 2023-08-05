@@ -36,3 +36,26 @@ public:
         return ans;
     }
 };
+
+// M2
+// Using sorting and hashing
+// Faster than 77.04% (35 ms)
+
+class Solution
+{
+public:
+    vector<vector<string>> groupAnagrams(vector<string> &strs)
+    {
+        vector<vector<string>> ans;
+        unordered_map<string, vector<string>> mp;
+        for (const auto &s : strs)
+        {
+            string t = s;
+            sort(t.begin(), t.end());
+            mp[t].push_back(s);
+        }
+        for (const auto &i : mp)
+            ans.push_back(i.second);
+        return ans;
+    }
+};
