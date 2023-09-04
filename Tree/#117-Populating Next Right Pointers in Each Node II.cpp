@@ -47,3 +47,39 @@ public:
         return root;
     }
 };
+
+// M2
+// Using Level order traversal in O(1) space
+// Faster than 88.85% (8ms)
+
+class Solution
+{
+public:
+    Node *connect(Node *root)
+    {
+        if (!root)
+            return root;
+        Node *node = root;
+        while (node)
+        {
+            Node *head = new Node(0);
+            Node *temp = head;
+            while (node)
+            {
+                if (node->left)
+                {
+                    head->next = node->left;
+                    head = head->next;
+                }
+                if (node->right)
+                {
+                    head->next = node->right;
+                    head = head->next;
+                }
+                node = node->next;
+            }
+            node = temp->next;
+        }
+        return root;
+    }
+};
