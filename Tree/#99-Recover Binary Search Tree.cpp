@@ -31,3 +31,57 @@ public:
         swap(first->val, second->val);
     }
 };
+
+// M2
+// Using Morris Traversal O(1) space
+// Faster than 91.13% (19ms)
+
+class Solution
+{
+public:
+    TreeNode *first = NULL;
+    TreeNode *second = NULL;
+    TreeNode *prev = NULL;
+    void check(TreeNode *curr)
+    {
+        if (prev != NULL and (curr->val < prev->val))
+        {
+            if (!first)
+                first = prev;
+            second = curr;
+        }
+        prev = curr;
+    }
+    void recoverTree(TreeNode *root)
+    {
+        if (!root)
+            return;
+        TreeNode *curr = root;
+        while (curr != NULL)
+        {
+            if (curr->left == NULL)
+            {
+                check(curr);
+                curr = curr->right;
+            }
+            else
+            {
+                TreeNode *pred = curr->left;
+                while ((pred->right != NULL) and (pred->right != curr))
+                    pred = pred->right;
+                if (pred->right == NULL)
+                {
+                    pred->right = curr;
+                    curr = curr->left;
+                }
+                else
+                {
+                    pred->right = NULL;
+                    check(curr);
+                    curr = curr->right;
+                }
+            }
+        }
+        swap(first->val, second->val);
+    }
+};
