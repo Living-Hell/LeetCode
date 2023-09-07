@@ -65,3 +65,34 @@ public:
         return count;
     }
 };
+
+// M3
+// Using unordered set ToC: O(N)
+// Faster than 71.48% (117ms)
+
+class Solution
+{
+public:
+    int longestConsecutive(vector<int> &nums)
+    {
+        int n = nums.size();
+        unordered_set<int> st;
+        int ans = 0;
+        for (int i : nums)
+            st.insert(i);
+        for (int i : st)
+        {
+            if (st.find(i - 1) == st.end())
+            {
+                int curr = 0, x = i;
+                while (st.count(x) > 0)
+                {
+                    x++;
+                    curr++;
+                }
+                ans = max(ans, curr);
+            }
+        }
+        return ans;
+    }
+};
