@@ -30,3 +30,38 @@ public:
         return count;
     }
 };
+
+// M2
+// Using sorting
+// Faster than 90.44% (68 ms)
+
+class Solution
+{
+public:
+    int longestConsecutive(vector<int> &nums)
+    {
+        int n = nums.size();
+        if (n == 0)
+            return 0;
+        sort(nums.begin(), nums.end());
+        int count = 1, temp = 1, last = INT_MIN;
+        for (int i = 0; i < n; i++)
+        {
+            if (nums[i] - 1 > last)
+            {
+                last = nums[i];
+                temp = 1;
+            }
+            else
+            {
+                if (nums[i] - last == 1)
+                {
+                    temp++;
+                    count = max(count, temp);
+                    last = nums[i];
+                }
+            }
+        }
+        return count;
+    }
+};
