@@ -27,6 +27,30 @@ public:
     }
 };
 
+// M2
+// Faster than 92.51% (70 ms)
+
+class MyCalendar
+{
+public:
+    vector<pair<int, int>> booking;
+    MyCalendar()
+    {
+        booking = {};
+    }
+
+    bool book(int start, int end)
+    {
+        for (auto const &p : booking)
+        {
+            if (start < p.second and end > p.first)
+                return false;
+        }
+        booking.push_back({start, end});
+        return true;
+    }
+};
+
 /**
  * Your MyCalendarTwo object will be instantiated and called as such:
  * MyCalendarTwo* obj = new MyCalendarTwo();
