@@ -27,3 +27,34 @@ public:
         return ans;
     }
 };
+
+// M2
+// Using 1D DP
+// Faster than 86.63% (136ms)
+
+class Solution
+{
+public:
+    int findLength(vector<int> &nums1, vector<int> &nums2)
+    {
+        int ans = 0, n1 = nums1.size(), n2 = nums2.size();
+        vector<int> dp(n2, 0);
+        for (int i = 0; i < n1; i++)
+        {
+            for (int j = n2 - 1; j >= 0; j--)
+            {
+                if (nums1[i] == nums2[j])
+                {
+                    if (i == 0 or j == 0)
+                        dp[j] = 1;
+                    else
+                        dp[j] = dp[j - 1] + 1;
+                    ans = max(dp[j], ans);
+                }
+                else
+                    dp[j] = 0;
+            }
+        }
+        return ans;
+    }
+};
