@@ -20,3 +20,25 @@ public:
         return st;
     }
 };
+
+// M2
+// Using recursion
+// Faster than 100% (0ms)
+
+class Solution
+{
+public:
+    int solve(int n)
+    {
+        if (n <= 2)
+            return n - 1;
+        if (n & 1)
+            return n - 2 - 2 * solve(n / 2);
+        else
+            return n - 1 - 2 * solve(n / 2);
+    }
+    int lastRemaining(int n)
+    {
+        return solve(n) + 1;
+    }
+};
