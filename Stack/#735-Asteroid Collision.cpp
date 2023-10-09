@@ -32,4 +32,4 @@ public:
         reverse(ans.begin(), ans.end());
         return ans;
     }
-};
+};71. Simplify Path
