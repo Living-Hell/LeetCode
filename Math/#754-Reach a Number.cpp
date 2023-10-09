@@ -1,6 +1,6 @@
 // M1
 // Using Maths
-// FAster than 54.44% (2ms)
+// FAster than 100% (0ms)
 
 class Solution
 {
@@ -9,7 +9,7 @@ public:
     {
         target = abs(target);
         long long int curr, total;
-        curr = ceil((-1.0 + sqrt(1 + 8.0 * target)) / 2); // check this
+        curr = ceil(sqrt(2 * target + 0.25) - 0.5);
         total = curr * (curr + 1) / 2;
         cout << total;
         if (total == target)
