@@ -43,3 +43,31 @@ public:
         return ans;
     }
 };
+
+// M2
+// Using sorting and lambda function
+// Faster than 89.45% (34ms)
+
+class Solution
+{
+public:
+    int minimumLengthEncoding(vector<string> &words)
+    {
+        int n = words.size();
+        sort(words.begin(), words.end(), [&](const string &a, const string &b)
+             {
+                for(auto ia = a.rbegin(), ib = b.rbegin(); ia!= a.rend() and ia != b.rend(); ia++, ib++)
+                    if(*ia != *ib)
+                        return *ia < *ib;
+                return a.size() < b.size(); });
+        int ans = 0;
+        for (int i = 0; i < n - 1; i++)
+        {
+            ans += words[i].size() <= words[i + 1].size() and
+                           words[i] == words[i + 1].substr(words[i + 1].size() - words[i].size())
+                       ? 0
+                       : words[i].size() + 1;
+        }
+        return ans + words[n - 1].size() + 1;
+    }
+};
