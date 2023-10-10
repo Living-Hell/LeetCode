@@ -1,5 +1,5 @@
 // M1
-// Using hashmap and sorting
+// Using dp, set and sorting
 // Faster than 7.14% (126ms)
 
 class Solution
@@ -32,6 +32,38 @@ public:
                     mp[arr[i]] += (mp[arr[j]] * mp[temp]) % mod;
                 }
             }
+        }
+        return ans % mod;
+    }
+};
+
+// M2
+// Using dp and sorting
+// Faster than 29.66% (66ms)
+
+class Solution
+{
+public:
+    int numFactoredBinaryTrees(vector<int> &arr)
+    {
+        int n = arr.size();
+        long long int ans = 0, mod = 1e9 + 7;
+        unordered_map<int, long long int> mp;
+
+        sort(arr.begin(), arr.end());
+
+        for (int i = 0; i < n; i++)
+        {
+            mp[arr[i]] = 1;
+            for (int j = 0; j < i; j++)
+            {
+                if (arr[i] % arr[j] == 0)
+                {
+                    int temp = arr[i] / arr[j];
+                    mp[arr[i]] += (mp[arr[j]] * mp[temp]) % mod;
+                }
+            }
+            ans = (ans + mp[arr[i]]) % mod;
         }
         return ans % mod;
     }
