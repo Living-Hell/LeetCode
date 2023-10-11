@@ -33,3 +33,25 @@ public:
         return ans;
     }
 };
+
+// M2
+// Using sorting
+// Faster than 100% (0ms)
+
+class Solution
+{
+public:
+    bool reorderedPowerOf2(int n)
+    {
+        string num = to_string(n);
+        sort(num.begin(), num.end());
+        for (int i = 0; i < 32; i++)
+        {
+            string temp = to_string(1 << i);
+            sort(temp.begin(), temp.end());
+            if (num == temp)
+                return 1;
+        }
+        return 0;
+    }
+};
