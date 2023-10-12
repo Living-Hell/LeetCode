@@ -41,3 +41,35 @@ public:
         return ans;
     }
 };
+
+// M2
+// Using binary search
+// Faster than 5.05% (1868 ms)
+
+class Solution
+{
+public:
+    int lenLongestFibSubseq(vector<int> &arr)
+    {
+        int n = arr.size();
+        int ans = 0;
+
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = i + 1; j < n; j++)
+            {
+                int a = arr[i], b = arr[j], c = a + b, count = 2;
+                while (lower_bound(arr.begin(), arr.end(), c) != arr.end())
+                {
+                    c = *lower_bound(arr.begin(), arr.end(), c);
+                    if (c != (a + b))
+                        break;
+                    a = b, b = c, c = a + b;
+                    count++;
+                }
+                ans = count > 2 ? max(ans, count) : ans;
+            }
+        }
+        return ans;
+    }
+};
