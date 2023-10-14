@@ -5,7 +5,6 @@
 class Solution
 {
 public:
-    // Using Bucket sort
     int maximumGap(vector<int> &nums)
     {
         int n = nums.size();
@@ -43,5 +42,51 @@ public:
         ans = max(ans, maxe - currMax);
 
         return ans;
+    }
+};
+
+// M2
+// Using Radix sort + count sort
+// Faster than 18.98% (228ms)
+
+class Solution
+{
+public:
+    // Using Radix Sort
+    int maximumGap(vector<int> &nums)
+    {
+        int n = nums.size();
+        int maxe = *max_element(nums.begin(), nums.end());
+        int div = 1;
+
+        while ((maxe / div) >= 1)
+        {
+            vector<int> ans(n);
+            vector<int> count(10, 0);
+
+            for (int num : nums)
+                count[(num / div) % 10]++;
+
+            for (int i = 1; i < 10; i++)
+                count[i] += count[i - 1];
+
+            for (int i = n - 1; i >= 0; i--)
+            {
+                int num = (nums[i] / div) % 10;
+                ans[count[num] - 1] = nums[i];
+                count[num]--;
+            }
+
+            for (int i = 0; i < n; i++)
+                nums[i] = ans[i];
+
+            div *= 10;
+        }
+
+        int gap = 0;
+        for (int i = 1; i < n; i++)
+            gap = max(gap, nums[i] - nums[i - 1]);
+
+        return gap;
     }
 };
