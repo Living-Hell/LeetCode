@@ -75,7 +75,7 @@ public:
 };
 
 // M2
-// Using BFS
+// Using DFS
 // Faster than 49.12% (167ms)
 
 class Solution
