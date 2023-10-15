@@ -55,3 +55,33 @@ public:
         return ans % 1000000007;
     }
 };
+
+// M2
+// Using hashtable
+// Faster than 51.95% (312ms)
+
+class Solution
+{
+public:
+    int threeSumMulti(vector<int> &arr, int target)
+    {
+        int n = arr.size();
+        sort(arr.begin(), arr.end());
+
+        long long int ans = 0;
+        int mp[301];
+
+        for (int i = 0; i < n; i++)
+        {
+            memset(mp, 0, sizeof(mp));
+            for (int j = i + 1; j < n; j++)
+            {
+                int val = target - arr[i] - arr[j];
+                if (val >= 0)
+                    ans += mp[val];
+                mp[arr[j]]++;
+            }
+        }
+        return ans % 1000000007;
+    }
+};
