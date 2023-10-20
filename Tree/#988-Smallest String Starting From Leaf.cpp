@@ -46,3 +46,7 @@ public:
         return ans;
     }
 };
+
+//M2
+//Using DFS (Preorder traversal)
+//
