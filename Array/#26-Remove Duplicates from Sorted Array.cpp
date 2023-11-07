@@ -20,3 +20,24 @@ public:
         return ind;
     }
 };
+
+// M2
+// Using unordered sets
+// Faster than 86.82% (4ms)
+
+class Solution
+{
+public:
+    int removeDuplicates(vector<int> &nums)
+    {
+        int ind = 1, n = nums.size();
+        for (int i = 1; i < n; i++)
+        {
+            if (nums[i] != nums[i - 1])
+            {
+                nums[ind++] = nums[i];
+            }
+        }
+        return ind;
+    }
+};
