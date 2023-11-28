@@ -1,9 +1,9 @@
-with t1 as(
+with t1 as (
     select user_id, count(user_id) as cnt
     from MovieRating
     group by user_id
 ),
-t2 as(
+t2 as (
     select movie_id, avg(rating) as rating
     from MovieRating
     where month(created_at) = 02 and year(created_at) = 2020
