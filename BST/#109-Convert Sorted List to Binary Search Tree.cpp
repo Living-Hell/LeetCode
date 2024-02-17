@@ -33,3 +33,45 @@ public:
         return toBST(v, 0, v.size() - 1);
     }
 };
+
+// M2
+// Using recursion and slow-fast pointers
+// Faster than 49.56% (20 ms)
+
+class Solution
+{
+public:
+    ListNode *midVal(ListNode *head)
+    {
+        ListNode *slow = head, *fast = head;
+        ListNode *prev = head;
+
+        while (fast and fast->next)
+        {
+            prev = slow;
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+
+        if (prev)
+            prev->next = NULL;
+        return slow;
+    }
+    TreeNode *sortedListToBST(ListNode *head)
+    {
+        if (!head)
+            return NULL;
+
+        ListNode *mid = midVal(head);
+
+        TreeNode *node = new TreeNode(mid->val);
+
+        if (head == mid)
+            return node;
+
+        node->left = sortedListToBST(head);
+        node->right = sortedListToBST(mid->next);
+
+        return node;
+    }
+};
