@@ -1,6 +1,6 @@
 //M1
-//Using BFS
-//Faster than % (ms) [TLE]
+//Using BFS brute force
+//Faster than % (ms) [TLE] O(N2)
 
 class Solution {
 public:
@@ -41,7 +41,7 @@ public:
 };
 
 //M2
-//Using DFS and root shifting technique
+//Using DFS and root shifting technique O(N)
 //Faster than 95.16% (178ms)
 class Solution {
 public:
