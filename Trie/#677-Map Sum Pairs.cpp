@@ -1,6 +1,6 @@
 //M1
 //Using Trie and recursion
-//Faster than 69.35% (3ms)
+//Faster than 56.39% (3ms)
 
 class Trie {
 public:
