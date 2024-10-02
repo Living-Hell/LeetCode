@@ -30,3 +30,37 @@ public:
         return solve(prices, 2, 0, 0);
     }
 };
+
+//M2
+//Using DP (Recursion + Memoisation)
+//Faster than 76.67% (129ms)
+
+class Solution {
+public:
+    int dp[100002][5];
+    int solve(vector<int>& prices, int k, int ind) {
+        if (ind == prices.size() or k == 0)
+            return 0;
+
+        if (dp[ind][k] != -1)
+            return dp[ind][k];
+
+        bool bought = (k % 2 == 1);
+
+        int ans1 = solve(prices, k, ind + 1);
+        int ans2;
+
+        if (bought)
+            ans2 =  prices[ind] + solve(prices, k - 1, ind + 1);
+        else
+            ans2 = -prices[ind] + solve(prices, k - 1, ind + 1);
+
+        int ans = max(ans1, ans2);
+
+        return dp[ind][k] = ans;
+    }
+    int maxProfit(vector<int>& prices) {
+        memset(dp, -1, sizeof(dp));
+        return solve(prices, 4, 0);
+    }
+};
