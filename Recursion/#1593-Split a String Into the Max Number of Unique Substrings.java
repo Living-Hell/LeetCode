@@ -25,3 +25,7 @@ class Solution {
         return res;
     }
 }
+
+//M2
+//Using recursion and hashset
+//Faster than 73.86% (33ms)
